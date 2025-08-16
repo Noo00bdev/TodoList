@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="todoList">
+        <form class="todo">
+            <h1>Todo List</h1>
+            <input type="text" placeholder="Add a new task" id="taskInput">
+            <button type="submit" class="btnAdd">Add Task</button>
+            <button class="del">Delete checked</button>
+        </form>
+        <div>
+            <div class="category">
+                <button class="btnCategory" data-category="checked" id="checked">checked</button>
+                <button class="btnCategory" data-category="no-checked" id="no-checked">No checked</button>
+            </div>
+            
+        </div>
+    </section>
+    <div class="listItems"></div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
