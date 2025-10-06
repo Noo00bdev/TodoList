@@ -9,7 +9,15 @@
 <body class="m-0 p-0 box-border">
     <section class="flex flex-col items-center gap-5 mt-10 bg-blue-500/30 p-3">
         <form id="todo">
-            <h1 class="text-2xl font-extrabold font-mono">Todo List</h1>
+            <div class="flex flex-row items-center gap-10">
+                <h1 class="text-2xl font-extrabold font-mono gap-23" id="title">Todo List</h1>
+                <div class="flex flex-row items-center gap-2 absolute right-10 bg-amber-100 p-2 rounded-2xl">
+                    <button id="themeToggle" class="cursor-pointer ">Dark mode</button>
+                </div>
+                
+            </div>
+            
+            
             <input type="text" placeholder="Add a new task" id="taskInput"  class="p-1.5 rounded-xs border-none outline-none bg-amber-50  placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/35 transition duration-500 mt-5">
             <button type="submit" id="btnAdd" class="p-1.5 border-none rounded-xs bg-amber-50 hover:bg-blue-600/35 transition duration-500">Add Task</button>
             <button id="del" class="p-1.5 border-none rounded-xs fo bg-amber-50  hover:bg-blue-600/35  transition duration-500">Delete checked</button>
@@ -35,6 +43,6 @@
 
     </div>
     
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
