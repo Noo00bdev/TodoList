@@ -10,6 +10,8 @@ const body = document.body
 const title = document.querySelector('#title')
 const theme = document.querySelector('#themeToggle')
 
+ 
+let date = new Date()
 // store les listes sous formes json dans le localStorage
 let tasks = JSON.parse(localStorage.getItem('list')) || [];
 
@@ -22,7 +24,7 @@ btn.addEventListener('click', function(e){
     const taskInput = document.querySelector('#taskInput')
     const taskValue = taskInput.value
     if(!taskValue) return
-    afficherTache(taskValue, tasks)
+    afficherTache(taskValue, tasks, date)
 
     // met la taches dans tasks
     tasks.push({text: `${taskValue}`, done : false})
@@ -82,6 +84,7 @@ delAll.addEventListener('click', function(e){
     })
     localStorage.removeItem('list')
 })
+
 
 
 

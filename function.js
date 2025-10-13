@@ -1,5 +1,6 @@
 
 const listItem = document.querySelector('#listItems')
+const AffDate = document.querySelector('.date')
 export function sauvegarderTaches(listItem, tasks) {
   // On sélectionne toutes les tâches dans la liste
   const elements = listItem.querySelectorAll('.list');
@@ -27,10 +28,9 @@ export function sauvegarderTaches(listItem, tasks) {
  * @param {String} Value
  * @param {Object} tasks
  */
-export function afficherTache(Value, tasks) {
+export function afficherTache(Value, tasks, date) {
     const taskDiv = document.createElement('div');
     taskDiv.className = "list flex flex-row gap-5 items-center border-none bg-white p-2 m-2 rounded relative w-full";
-
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.className = "w-5 h-5 cursor-pointer";
@@ -48,6 +48,9 @@ export function afficherTache(Value, tasks) {
             console.log(e.key)
         }
     })
+
+    const time = document.createElement('p')
+    time.textContent = AfficherDate(date)
         
     
     checkbox.addEventListener("change",()=>sauvegarderTaches(listItem, tasks) )
@@ -68,8 +71,8 @@ export function afficherTache(Value, tasks) {
     deleteBtn.className ="absolute right-0 bg-red-900 p-2 rounded-xs"
 
     // div.append(checkbox, taskContent)
-    taskDiv.append(checkbox, taskContent , deleteBtn);
-    listItem.append(taskDiv);
+    taskDiv.append(checkbox, taskContent,time , deleteBtn);
+    listItem.append(taskDiv,);
 }
 
 
@@ -81,4 +84,14 @@ export function afficherTache(Value, tasks) {
 export function ChangeTheme(e, value){
     e.preventDefault()
     value.classList.toggle('bg-gray-900/80')
+}
+
+
+function AfficherDate(date){
+
+    const jour = String(date.getDate()).padStart(2, '0');   // 1 → "01"
+    const mois = String(date.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+    const annee = date.getFullYear();
+    const dateFormat = `${jour}/${mois}/${annee}`;
+    return dateFormat
 }
