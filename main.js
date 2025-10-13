@@ -38,7 +38,6 @@ btn.addEventListener('click', function(e){
 theme.addEventListener('click', (e) => {
     ChangeTheme(e, body)
     title.classList.toggle('text-white')
-    history.classList.toggle('text-white')
 })
 
 

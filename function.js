@@ -21,7 +21,7 @@ export function sauvegarderTaches(listItem, tasks) {
  */
 export function afficherTache(Value, tasks) {
     const taskDiv = document.createElement('div');
-    taskDiv.className = "list flex flex-row gap-5 items-center border p-2 m-2 rounded";
+    taskDiv.className = "list flex flex-row gap-5 items-center border-none bg-white p-2 m-2 rounded relative w-full";
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -48,7 +48,7 @@ export function afficherTache(Value, tasks) {
     deleteBtn.addEventListener('click', ()=>{
         taskDiv.remove()
     })
-    deleteBtn.className ="absolute right-3 bg-red-900 p-1 rounded-xs"
+    deleteBtn.className ="absolute right-0 bg-red-900 p-2 rounded-xs"
 
     // div.append(checkbox, taskContent)
     taskDiv.append(checkbox, taskContent , deleteBtn);

@@ -7,35 +7,37 @@
     <link rel="stylesheet" href="src/output.css">
 </head>
 <body class="m-0 p-0 box-border">
-    <section class="flex flex-col items-center gap-5 mt-10 bg-blue-500/30 p-3">
-        <form id="todo">
+    <section class="flex flex-col items-center gap-5  bg-blue-500/30 p-3">
+        <form id="todo" class="flex flex-col gap-2">
             <div class="flex flex-row items-center gap-10">
                 <h1 class="text-2xl font-extrabold font-mono gap-23" id="title">Todo List</h1>
                 <div class="flex flex-row items-center gap-2 absolute right-10 bg-amber-100 p-2 rounded-2xl">
-                    <button id="themeToggle" class="cursor-pointer ">Dark mode</button>
+                    <button id="themeToggle" class="cursor-pointer hover:border-2 hover:border-amber-500 ">Dark mode</button>
                 </div>
-                
+            </div>
+            <div class="flex items-center justify-center mt-3 w-fit relative">
+                <input type="text" placeholder="Add a new task" id="taskInput"  class="p-1.5 rounded-2xl border-none outline-none bg-amber-50  placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/35 transition duration-500  ">
+                <button type="submit" id="btnAdd" class="p-2.5 border-none rounded-2xl bg-amber-900 hover:bg-blue-600/35 transition duration-500 text-xs text-amber-50 absolute right-0">Add Task</button>
+            </div>
+            <div>
+                <button id="del" class="p-1.5 border-none rounded-2xl fo bg-amber-50  hover:bg-blue-600/35  transition duration-500">Delete coché</button>
+                <button id="delAll" class="p-1.5 border-none rounded-2xl fo bg-amber-50  hover:bg-blue-600/35  transition duration-500">Delete all</button>
             </div>
             
-            
-            <input type="text" placeholder="Add a new task" id="taskInput"  class="p-1.5 rounded-xs border-none outline-none bg-amber-50  placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/35 transition duration-500 mt-5">
-            <button type="submit" id="btnAdd" class="p-1.5 border-none rounded-xs bg-amber-50 hover:bg-blue-600/35 transition duration-500">Add Task</button>
-            <button id="del" class="p-1.5 border-none rounded-xs fo bg-amber-50  hover:bg-blue-600/35  transition duration-500">Delete checked</button>
-            <button id="delAll" class="p-1.5 border-none rounded-xs fo bg-amber-50  hover:bg-blue-600/35  transition duration-500">Delete ALL</button>
         </form>
         <div>
             <div class="flex flex-row items-center mt-2 gap-2">
-                <button class="p-2 rounded-2xl transition duration-300 bg-indigo-700 text-white hover:bg-amber-50 hover:text-black" data-category="checked" id="checked">checked</button>
-                <button class="p-2 rounded-2xl transition duration-300  bg-indigo-700 text-white hover:bg-amber-50 hover:text-black" data-category="no-checked" id="no-checked">No checked</button>
+                <button class="p-2 rounded-2xl transition duration-300 bg-amber-50/20 text-white hover:bg-amber-50 hover:text-black" data-category="checked" id="checked">Checked</button>
+                <button class="p-2 rounded-2xl transition duration-300  bg-amber-50/20 text-white hover:bg-amber-50 hover:text-black" data-category="no-checked" id="no-checked">No checked</button>
             </div>
             
         </div>
     </section>
     <!-- Les listes apparaissent ici -->
-    <div id="listItems">
+    <div id="listItems" class="bg-amber-100 rounded-2xl m-2 p-5">
         
     </div>
-    <div id="history" class="mt-10 p-3">
+    <div id="history" class="mt-10 p-3 bg-amber-100 rounded-2xl m-2">
         <h2 class="text-center mb-5 ">History</h2>
         <div id="historyItems" class="flex flex-col gap-2">
 
