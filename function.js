@@ -43,7 +43,7 @@ export function afficherTache(Value, tasks) {
   
     taskContent.addEventListener("keydown", (e)=> {
         if(e.key === "Enter"){
-            e.preventDefault()
+            e.preventDefault
             sauvegarderTaches(listItem, tasks)
             console.log(e.key)
         }

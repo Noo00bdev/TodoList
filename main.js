@@ -1,10 +1,9 @@
-import { afficherTache, ChangeTheme , sauvegarderTaches } from "./function.js"
+import { afficherTache, ChangeTheme, sauvegarderTaches} from "./function.js"
 
 const listItem = document.querySelector('#listItems')
 const btn = document.querySelector('#btnAdd')
 const checked = document.querySelector('#checked')
 const Nocheck = document.querySelector('#no-checked')
-const Delete = document.querySelector('#del')
 const delAll = document.querySelector('#delAll')
 const history = document.querySelector('#history')
 const body = document.body
@@ -44,7 +43,6 @@ theme.addEventListener('click', (e) => {
 
 
 checked.addEventListener('click', function(){
-
     if(Nocheck.classList.contains('selected')){
         Nocheck.classList.remove('selected')
     }
@@ -60,36 +58,15 @@ checked.addEventListener('click', function(){
 
 Nocheck.addEventListener('click', function(){
     Nocheck.classList.toggle('selected')
-
     if(checked.classList.contains('selected')){
         checked.classList.remove('selected')
     }
-
     const all = document.querySelectorAll('.list')
-
     all.forEach(item => {
         const IsNotChecked = !item.querySelector('input[type = "checkbox"]').checked
         item.style.display = IsNotChecked ? 'flex' : 'none'
     })
     
-})
-
-
-
-
-
-// Supprime les taches cocher
-Delete.addEventListener('click', function(e){
-    e.preventDefault()
-    //selectionner toute les task
-    const allTask = document.querySelectorAll('.list')
-    //parcourir les tache avec foreach
-    allTask.forEach(item => {
-        // selectionner les element input de type checkbox
-        if(item.querySelector('input[type = "checkbox"]').checked){
-            item.remove()
-        }
-    })
 })
 
 
@@ -103,10 +80,7 @@ delAll.addEventListener('click', function(e){
     allTasks.forEach(items => {
         items.remove()
     })
-
     localStorage.removeItem('list')
-
-
 })
 
 
@@ -114,7 +88,7 @@ delAll.addEventListener('click', function(e){
 // Afficher les tâches existantes
 tasks.forEach(task => {
     const taskDiv = document.createElement('div');
-    taskDiv.className = " list flex gap-5 items-center bg-blue-600/30 p-2 mt-2 rounded";
+    taskDiv.className = "list flex flex-row gap-5 items-center border-none bg-white p-2 m-2 rounded relative w-full";
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -125,8 +99,38 @@ tasks.forEach(task => {
     taskContent.innerText = task.text;
     taskContent.className = "font-bold";
 
-    taskDiv.append(checkbox, taskContent);
-    listItem.append(taskDiv);
+    taskContent.setAttribute("contenteditable", "true")
+    
+    taskContent.addEventListener("keydown", (e)=> {
+        if(e.key === "Enter"){
+            e.preventDefault()
+            sauvegarderTaches(listItem, tasks)
+            console.log(e.key)
+        }
+    })
+        
+    
+    checkbox.addEventListener("change",()=>sauvegarderTaches(listItem, tasks) )
+    taskContent.addEventListener('focus', () => {
+        taskContent.className = "outline-none";
+        taskDiv.classList.toggle("border-blue-600");
+    });
+
+
+    // Le button supprimer
+    const deleteBtn = document.createElement('button')
+    deleteBtn.innerHTML = `
+        <img src="delete.png">
+    `
+    deleteBtn.addEventListener('click', ()=>{
+        taskDiv.remove()
+        localStorage.removeItem('list')
+    })
+    deleteBtn.className ="absolute right-0 bg-red-900 p-2 rounded-xs"
+
+    // div.append(checkbox, taskContent)
+    taskDiv.append(checkbox, taskContent , deleteBtn);
+    history.append(taskDiv);
 });
 
 
