@@ -6,9 +6,16 @@ export function sauvegarderTaches(listItem, tasks) {
 
 
   // On recrée le tableau des tâches
-  tasks = Array.from(elements).map(item => {
+  Array.from(elements).forEach(item => {
     const text = item.querySelector('p').textContent.trim(); // le texte de la tâche
     const done = item.querySelector('input[type="checkbox"]').checked; // état de la case
+    
+    const existingTask = tasks.find(t => t.text === text);
+    if (existingTask) {
+        existingTask.done = done; // ✅ met à jour l’état
+    } else {
+        tasks.push({ text, done }); // ➕ ajoute une nouvelle tâche
+    }
     return { text, done };
   });
 
@@ -17,7 +24,8 @@ export function sauvegarderTaches(listItem, tasks) {
 }
 /**
  * 
- * @param {String} Value 
+ * @param {String} Value
+ * @param {Object} tasks
  */
 export function afficherTache(Value, tasks) {
     const taskDiv = document.createElement('div');
@@ -32,7 +40,16 @@ export function afficherTache(Value, tasks) {
     taskContent.className = "font-bold";
 
     taskContent.setAttribute("contenteditable", "true")
-    taskContent.addEventListener("input", ()=>sauvegarderTaches(listItem, tasks))
+  
+    taskContent.addEventListener("keydown", (e)=> {
+        if(e.key === "Enter"){
+            e.preventDefault()
+            sauvegarderTaches(listItem, tasks)
+            console.log(e.key)
+        }
+    })
+        
+    
     checkbox.addEventListener("change",()=>sauvegarderTaches(listItem, tasks) )
     taskContent.addEventListener('focus', () => {
         taskContent.className = "outline-none";
@@ -56,9 +73,12 @@ export function afficherTache(Value, tasks) {
 }
 
 
-
+/**
+ * 
+ * @param {never} e 
+ * @param {HTMLBodyElement} value 
+ */
 export function ChangeTheme(e, value){
     e.preventDefault()
     value.classList.toggle('bg-gray-900/80')
-
 }

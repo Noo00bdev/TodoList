@@ -103,6 +103,10 @@ delAll.addEventListener('click', function(e){
     allTasks.forEach(items => {
         items.remove()
     })
+
+    localStorage.removeItem('list')
+
+
 })
 
 
@@ -110,7 +114,7 @@ delAll.addEventListener('click', function(e){
 // Afficher les tâches existantes
 tasks.forEach(task => {
     const taskDiv = document.createElement('div');
-    taskDiv.className = " flex gap-5 items-center bg-blue-600/30 p-2 mt-2 rounded";
+    taskDiv.className = " list flex gap-5 items-center bg-blue-600/30 p-2 mt-2 rounded";
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -122,7 +126,7 @@ tasks.forEach(task => {
     taskContent.className = "font-bold";
 
     taskDiv.append(checkbox, taskContent);
-    history.append(taskDiv);
+    listItem.append(taskDiv);
 });
 
 
