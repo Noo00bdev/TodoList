@@ -1,4 +1,4 @@
-import { afficherTache, ChangeTheme, sauvegarderTaches} from "./function.js"
+import { afficherTache, ChangeTheme, sauvegarderTaches, AfficherDate,Alltask} from "./function.js"
 
 const listItem = document.querySelector('#listItems')
 const btn = document.querySelector('#btnAdd')
@@ -27,11 +27,10 @@ btn.addEventListener('click', function(e){
     afficherTache(taskValue, tasks, date)
 
     // met la taches dans tasks
-    tasks.push({text: `${taskValue}`, done : false})
+    tasks.push({text: `${taskValue}`, done : false, date: new Date().toLocaleDateString("fr-FR")})
     // Sauvegarde dans le localSt"Nouvelle tâche dans localStorage
     localStorage.setItem('list', JSON.stringify(tasks));
-
-
+    
     form.reset()
 })
 
@@ -89,51 +88,6 @@ delAll.addEventListener('click', function(e){
 
 
 // Afficher les tâches existantes
-tasks.forEach(task => {
-    const taskDiv = document.createElement('div');
-    taskDiv.className = "list flex flex-row gap-5 items-center border-none bg-white p-2 m-2 rounded relative w-full";
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = task.done;
-    checkbox.className = "w-5 h-5 cursor-pointer";
-
-    const taskContent = document.createElement('p');
-    taskContent.innerText = task.text;
-    taskContent.className = "font-bold";
-
-    taskContent.setAttribute("contenteditable", "true")
-    
-    taskContent.addEventListener("keydown", (e)=> {
-        if(e.key === "Enter"){
-            e.preventDefault()
-            sauvegarderTaches(listItem, tasks)
-            console.log(e.key)
-        }
-    })
-        
-    
-    checkbox.addEventListener("change",()=>sauvegarderTaches(listItem, tasks) )
-    taskContent.addEventListener('focus', () => {
-        taskContent.className = "outline-none";
-        taskDiv.classList.toggle("border-blue-600");
-    });
-
-
-    // Le button supprimer
-    const deleteBtn = document.createElement('button')
-    deleteBtn.innerHTML = `
-        <img src="delete.png">
-    `
-    deleteBtn.addEventListener('click', ()=>{
-        taskDiv.remove()
-        localStorage.removeItem('list')
-    })
-    deleteBtn.className ="absolute right-0 bg-red-900 p-2 rounded-xs"
-
-    // div.append(checkbox, taskContent)
-    taskDiv.append(checkbox, taskContent , deleteBtn);
-    history.append(taskDiv);
-});
-
+Alltask(tasks)
 
